@@ -1,0 +1,23 @@
+@import "src/styles/vars";
+
+.cheerful-users {
+  padding: 170px 80px 160px;
+  background-color: $back-color2;
+  text-align: center;
+
+  &__title {
+    margin-bottom: 33px;
+    font-size: 50px;
+  }
+
+  &__subtitle {
+    margin-bottom: 80px;
+  }
+
+  &__users {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+  }
+}

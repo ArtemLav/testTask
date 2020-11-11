@@ -1,0 +1,20 @@
+.form {
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__radio {
+    margin-bottom: 30px;
+  }
+
+  &__image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+  }
+
+  &__image-label {
+    margin-bottom: 20px;
+  }
+}

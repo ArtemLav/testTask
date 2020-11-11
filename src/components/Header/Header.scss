@@ -1,0 +1,27 @@
+@import "src/styles/vars";
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $back-color1;
+  padding: 30px 20px;
+  height: 60px;
+
+  &__logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    height: 32px;
+  }
+
+  &__title {
+    margin: 0 7px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+}

@@ -1,0 +1,42 @@
+.user {
+  padding: 15px 5px 40px;
+  justify-self: center;
+  width: 216px;
+  text-align: center;
+
+  &__photo {
+    margin-bottom: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 3px 3px 5px darkgray;
+    }
+  }
+
+  &__name,
+  &__position,
+  &__email {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  &__name {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+  }
+
+  &__position {
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+  }
+
+  &__email {
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,28 @@
+.intro {
+  padding: 155px 30px 155px 55px;
+
+  &__title {
+    margin-bottom: 70px;
+    font-size: 50px;
+    line-height: 54px;
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__img {
+    margin-right: 50px;
+  }
+
+  &__heading {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  &__paragraph {
+    margin-bottom: 40px;
+  }
+}

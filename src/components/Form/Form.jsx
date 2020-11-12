@@ -7,13 +7,29 @@ export const Form = () => {
   const [positions, setPositions] = useState([]);
   const [image, setImage] = useState(null);
 
-  const handleUpload = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]));
-  };
+  const [formFields, setFormfields] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    position: '',
+  });
 
   useEffect(() => {
     getPositions().then(result => setPositions(result));
   }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormfields(prevFields => ({
+      ...prevFields,
+      [name]: value,
+    }));
+  };
+
+  const handleUpload = (event) => {
+    setImage(URL.createObjectURL(event.target.files[0]));
+  };
 
   return (
     <form
@@ -24,8 +40,11 @@ export const Form = () => {
         <label htmlFor="name" className="form__label">Name</label>
         <input
           type="text"
-          className="form-control"
+          name="name"
+          value={formFields.name}
+          onChange={handleChange}
           id="name"
+          className="form-control"
           placeholder="Your name"
         />
       </div>
@@ -34,8 +53,11 @@ export const Form = () => {
         <label htmlFor="email" className="form__label">Your email</label>
         <input
           type="email"
-          className="form-control"
+          name="email"
+          value={formFields.email}
+          onChange={handleChange}
           id="email"
+          className="form-control"
           placeholder="Your name"
         />
       </div>
@@ -44,8 +66,11 @@ export const Form = () => {
         <label htmlFor="phone" className="form__label">Phone number</label>
         <input
           type="text"
-          className="form-control"
+          name="phone"
+          value={formFields.phone}
+          onChange={handleChange}
           id="phone"
+          className="form-control"
           placeholder="+380 XX XXX XX XX"
         />
         <small className="input__helper">
@@ -56,11 +81,12 @@ export const Form = () => {
         {positions.map(position => (
           <div className="form-check" key={position.id}>
             <input
-              className="form-check-input"
               type="radio"
+              value={position.name}
+              onChange={handleChange}
               name="position"
               id={position.name}
-              value={position.name}
+              className="form-check-input"
             />
             <label
               className="form-check-label form__label"

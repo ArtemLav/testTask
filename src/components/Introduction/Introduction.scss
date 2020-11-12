@@ -1,3 +1,5 @@
+@import "src/styles/vars";
+
 .intro {
   padding: 155px 30px 155px 55px;
 
@@ -23,3 +25,29 @@
     margin-bottom: 40px;
   }
 }
+
+@media (max-width: $tablet-screen-breakpoint) {
+  .intro {
+    padding: 125px 30px;
+
+    &__img {
+      margin-right: 30px;
+    }
+  }
+}
+
+@media (max-width: $mobile1-screen-breakpoint) {
+  .intro {
+    padding: 85px 15px;
+
+    image {
+      margin: 0 auto 30px;
+    }
+
+    &__content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
+

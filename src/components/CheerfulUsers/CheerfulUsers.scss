@@ -20,3 +20,20 @@
     gap: 30px;
   }
 }
+
+@media (max-width: $tablet-screen-breakpoint) {
+  .cheerful-users {
+    padding: 125px 40px;
+  }
+}
+
+@media (max-width: $mobile1-screen-breakpoint) {
+  .cheerful-users {
+
+    &__users {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  }
+}

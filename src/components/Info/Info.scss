@@ -1,18 +1,30 @@
+@import "src/styles/vars";
+
 .info {
   padding: 115px 0 115px 30px;
   background: url("../../assets/banner-photo.jpg") no-repeat 50% 50%;
   background-size: cover;
   color: white;
 
-  &__title {
+  &__title, &__description {
     margin-bottom: 40px;
     max-width: 530px;
-    font-size: 50px;
-    text-transform: uppercase;
   }
 
-  &__description {
-    max-width: 530px;
-    margin-bottom: 40px;
+  &__title {
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: $tablet-screen-breakpoint) {
+  .info {
+    padding: 70px 0 70px 30px;
+  }
+}
+
+@media (max-width: $mobile-screen-breakpoint) {
+  .info {
+    padding: 70px 10px;
+    text-align: center;
   }
 }

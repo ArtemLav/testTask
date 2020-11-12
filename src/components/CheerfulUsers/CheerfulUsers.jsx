@@ -20,7 +20,7 @@ export const CheerfulUsers = () => {
 
   useEffect(() => {
     getUsers().then(data => data
-      .sort((a, b) => a.registration_timestamp - b.registration_timestamp))
+      .sort((a, b) => b.registration_timestamp - a.registration_timestamp))
       .then(usersArray => usersArray.slice(0, usersCount))
       .then((result) => {
         setUsers(result);

@@ -11,9 +11,9 @@ export const Header = () => (
         src={logo}
         alt="test logo"
       />
-      <h2 className="header__title">
+      <h4 className="header__title">
         testtask
-      </h2>
+      </h4>
     </div>
 
     <Navbar />

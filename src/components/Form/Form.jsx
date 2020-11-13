@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Form.scss';
+import classnames from 'classnames';
 import { getPositions } from '../../api/api';
 import { Button } from '../Button/Button';
 
@@ -7,11 +8,18 @@ export const Form = () => {
   const [positions, setPositions] = useState([]);
   const [image, setImage] = useState(null);
 
-  const [formFields, setFormfields] = useState({
+  const [formFields, setFormFields] = useState({
     name: '',
     email: '',
     phone: '',
     position: '',
+  });
+
+  const [formFieldsErrors, setFormFieldsErrors] = useState({
+    nameError: false,
+    emailError: false,
+    phoneError: false,
+    positionError: false,
   });
 
   useEffect(() => {
@@ -21,14 +29,52 @@ export const Form = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setFormfields(prevFields => ({
+    setFormFields(prevFields => ({
       ...prevFields,
       [name]: value,
     }));
+
+    setFormFieldsErrors(prevFields => ({
+      ...prevFields,
+      [`${name}Error`]: false,
+    }));
+
+    // eslint-disable-next-line no-console
+    console.log(formFields);
   };
 
   const handleUpload = (event) => {
     setImage(URL.createObjectURL(event.target.files[0]));
+  };
+
+  const handleNameError = () => {
+    if (formFields.name.length < 3) {
+      setFormFieldsErrors(prevFields => ({
+        ...prevFields,
+        nameError: true,
+      }));
+    }
+  };
+
+  const handleEmailError = () => {
+    if (!formFields.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
+      setFormFieldsErrors(prevFields => ({
+        ...prevFields,
+        emailError: true,
+      }));
+    }
+  };
+
+  const handlePhoneError = () => {
+    if (
+      !formFields.phone
+        .match(/^[+]{0,1}380([0-9]{9})$/g)
+    ) {
+      setFormFieldsErrors(prevFields => ({
+        ...prevFields,
+        phoneError: true,
+      }));
+    }
   };
 
   return (
@@ -43,10 +89,18 @@ export const Form = () => {
           name="name"
           value={formFields.name}
           onChange={handleChange}
+          onBlur={handleNameError}
           id="name"
-          className="form-control"
+          className={classnames('form-control', {
+            form__input_danger: formFieldsErrors.nameError,
+          })}
           placeholder="Your name"
         />
+        {formFieldsErrors.nameError && (
+          <small className="input__helper text-danger">
+            Your Name should contain at least 3 Characters
+          </small>
+        )}
       </div>
 
       <div className="form-group">
@@ -56,10 +110,18 @@ export const Form = () => {
           name="email"
           value={formFields.email}
           onChange={handleChange}
+          onBlur={handleEmailError}
           id="email"
-          className="form-control"
+          className={classnames('form-control', {
+            form__input_danger: formFieldsErrors.emailError,
+          })}
           placeholder="Your name"
         />
+        {formFieldsErrors.emailError && (
+          <small className="input__helper text-danger">
+            Please enter valid email address
+          </small>
+        )}
       </div>
 
       <div className="form-group">
@@ -69,20 +131,29 @@ export const Form = () => {
           name="phone"
           value={formFields.phone}
           onChange={handleChange}
+          onBlur={handlePhoneError}
           id="phone"
-          className="form-control"
+          className={classnames('form-control', {
+            form__input_danger: formFieldsErrors.phoneError,
+          })}
           placeholder="+380 XX XXX XX XX"
         />
-        <small className="input__helper">
-          Enter a phone number in international format
-        </small>
+        {formFieldsErrors.phoneError ? (
+          <small className="input__helper text-danger">
+            Your phone number should be &apos;+380XXXXXXXXX&apos; format
+          </small>
+        ) : (
+          <small className="input__helper">
+            Enter a phone number in international format
+          </small>
+        )}
       </div>
       <div className="form__radio">
         {positions.map(position => (
           <div className="form-check" key={position.id}>
             <input
               type="radio"
-              value={position.name}
+              value={position.id}
               onChange={handleChange}
               name="position"
               id={position.name}

@@ -26,9 +26,17 @@ export const User = ({ name, position, email, phone, photo }) => (
 );
 
 User.propTypes = {
-  name: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  position: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  photo: PropTypes.string,
+};
+
+User.defaultProps = {
+  name: '',
+  position: '',
+  email: '',
+  phone: '',
+  photo: '',
 };

@@ -26,12 +26,14 @@ ul {
   padding: 0;
 }
 
-a,
-a:visited {
-  text-decoration: none;
-  color: inherit;
+p {
+  margin: 0;
 }
 
-p {
+button, button:focus {
+  outline: none;
+}
+
+hr {
   margin: 0;
 }

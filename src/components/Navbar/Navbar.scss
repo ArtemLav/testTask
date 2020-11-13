@@ -1,7 +1,6 @@
 @import "src/styles/vars";
 
 .nav {
-  display: flex;
   align-items: center;
 
   &__list {
@@ -23,6 +22,30 @@
 
     &_active {
       color: $secondary-color;
+    }
+  }
+
+  &__link-separator {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: $tablet-screen-breakpoint) {
+  .nav {
+    z-index: 2;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 80vw;
+    background-color: $back-color1;
+    border-top: 1px solid $footer-border-color;
+
+    &__list {
+      display: block;
+    }
+
+    &__item {
+      padding: 16px 15px;
     }
   }
 }

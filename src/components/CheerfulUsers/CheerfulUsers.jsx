@@ -5,27 +5,24 @@ import { User } from '../User/User';
 import { Button } from '../Button/Button';
 
 export const CheerfulUsers = () => {
-  // const [allUsers, setAllUsers] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+  const [users, setUsers] = useState([allUsers]);
   const [usersCount, setUsersCount] = useState(6);
 
   const addMoreUsers = () => {
     setUsersCount(prevUsersCount => prevUsersCount + 6);
   };
 
-  // const getAllUsers = () => {
-  //   getUsers()
-  //     .then(data => setAllUsers(data));
-  // };
+  useEffect(() => {
+    getUsers()
+      .then(data => data
+        .sort((a, b) => b.registration_timestamp - a.registration_timestamp))
+      .then(result => setAllUsers(result));
+  }, []);
 
   useEffect(() => {
-    getUsers().then(data => data
-      .sort((a, b) => a.registration_timestamp - b.registration_timestamp))
-      .then(usersArray => usersArray.slice(0, usersCount))
-      .then((result) => {
-        setUsers(result);
-      });
-  }, [usersCount]);
+    setUsers(allUsers.slice(0, usersCount));
+  }, [usersCount, allUsers]);
 
   return (
     <section className="cheerful-users app__cheerful-users">

@@ -7,7 +7,6 @@
 
   &__title {
     margin-bottom: 33px;
-    font-size: 50px;
   }
 
   &__subtitle {
@@ -19,5 +18,22 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 30px;
+  }
+}
+
+@media (max-width: $tablet-screen-breakpoint) {
+  .cheerful-users {
+    padding: 125px 40px;
+  }
+}
+
+@media (max-width: $mobile1-screen-breakpoint) {
+  .cheerful-users {
+
+    &__users {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
   }
 }

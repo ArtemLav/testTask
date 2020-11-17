@@ -32,7 +32,6 @@
 
 @media (max-width: $tablet-screen-breakpoint) {
   .nav {
-    z-index: 2;
     position: absolute;
     top: 60px;
     left: 0;
@@ -45,7 +44,7 @@
     }
 
     &__item {
-      padding: 16px 15px;
+      padding: 12px 15px;
     }
   }
 }

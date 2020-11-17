@@ -7,8 +7,8 @@ import './Header.scss';
 const navLinks = ['About me', 'Relationships', 'Requirements',
   'Users', 'Sign up'];
 
-const navLinksWithId = navLinks.map((link, index) => ({
-  name: link,
+const navLinksWithId = navLinks.map((name, index) => ({
+  name,
   id: index + 1,
 }));
 
@@ -17,14 +17,14 @@ const navLinksMobile = ['About me', 'Relationships',
   'Partnership', 'Help', 'Leave Testimonial', 'Contact Us',
   'Articles', 'Our News', 'Testimonials', 'Licenses', 'Privacy policy'];
 
-const navLinksMobileWithId = navLinksMobile.map((link, index) => ({
-  name: link,
+const navLinksMobileWithId = navLinksMobile.map((name, index) => ({
+  name,
   id: index + 1,
 }));
 
 export const Header = () => {
   const [currentNav, setCurrentNav] = useState([navLinksWithId]);
-  const [screenWidth, setScreenWidht] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener('resize', updateWindowWidth);
@@ -39,17 +39,19 @@ export const Header = () => {
   }, [screenWidth]);
 
   const updateWindowWidth = () => {
-    setScreenWidht(window.innerWidth);
+    setScreenWidth(window.innerWidth);
   };
 
   return (
-    <header className="header app__header">
+    <header className="header app__header" id="header">
       <div className="header__logo-container">
-        <img
-          className="header__logo"
-          src={logo}
-          alt="test logo"
-        />
+        <a href="#header">
+          <img
+            className="header__logo"
+            src={logo}
+            alt="test logo"
+          />
+        </a>
       </div>
 
       <label

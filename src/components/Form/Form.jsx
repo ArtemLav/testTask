@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Form.scss';
 import classnames from 'classnames';
-import { getPositions } from '../../api/api';
+import { getPositions, getToken } from '../../api/api';
 import { Button } from '../Button/Button';
 
 export const Form = () => {
@@ -38,9 +38,6 @@ export const Form = () => {
       ...prevFields,
       [`${name}Error`]: false,
     }));
-
-    // eslint-disable-next-line no-console
-    console.log(formFields);
   };
 
   const handleUpload = (event) => {
@@ -77,10 +74,46 @@ export const Form = () => {
     }
   };
 
+  const handleSubmit = () => {
+    const formData = new FormData();
+    const imageInput = document.querySelector('input[type="file"]');
+
+    formData.append('position_id', formFields.position);
+    formData.append('name', formFields.name);
+    formData.append('email', formFields.email);
+    formData.append('phone', formFields.phone);
+    formData.append('photo', imageInput.files[0]);
+
+    fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
+      method: 'POST', body: formData, headers: { Token: getToken() },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        // eslint-disable-next-line no-console
+        console.log(data);
+        if (data.success) {
+          // eslint-disable-next-line no-console
+          console.log('success');
+        } else {
+          // eslint-disable-next-line no-console
+          console.log('server error');
+        }
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      });
+  };
+
   return (
     <form
       id="registration-form"
       className="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        handleSubmit();
+      }}
     >
       <div className="form-group">
         <label htmlFor="name" className="form__label">Name</label>
@@ -95,6 +128,7 @@ export const Form = () => {
             form__input_danger: formFieldsErrors.nameError,
           })}
           placeholder="Your name"
+          required
         />
         {formFieldsErrors.nameError && (
           <small className="input__helper text-danger">
@@ -116,6 +150,7 @@ export const Form = () => {
             form__input_danger: formFieldsErrors.emailError,
           })}
           placeholder="Your name"
+          required
         />
         {formFieldsErrors.emailError && (
           <small className="input__helper text-danger">
@@ -137,6 +172,7 @@ export const Form = () => {
             form__input_danger: formFieldsErrors.phoneError,
           })}
           placeholder="+380 XX XXX XX XX"
+          required
         />
         {formFieldsErrors.phoneError ? (
           <small className="input__helper text-danger">
@@ -158,6 +194,7 @@ export const Form = () => {
               name="position"
               id={position.name}
               className="form-check-input"
+              required
             />
             <label
               className="form-check-label form__label"

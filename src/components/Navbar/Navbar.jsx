@@ -16,7 +16,7 @@ export const Navbar = ({ currentNav }) => {
         {currentNav.map(link => (
           <li className="nav__item" key={link.id}>
             <a
-              href="#registration-form"
+              href="#header"
               className={classnames('nav__link text-decoration-none', {
                 nav__link_active: activeLink === link.name,
               })}

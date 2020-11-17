@@ -10,18 +10,34 @@
   padding: 30px 20px;
   height: 60px;
 
-  &__logo-container {
-    display: flex;
-    align-items: center;
+  &__burger {
+    display: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
-  &__logo {
-    height: 32px;
+  &__checkbox {
+    display: none;
   }
+}
 
-  &__title {
-    margin: 0 7px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
+@media (max-width: $tablet-screen-breakpoint) {
+  .header {
+
+    &__burger {
+      display: block;
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__checkbox:checked + &__nav {
+      display: block;
+    }
   }
 }

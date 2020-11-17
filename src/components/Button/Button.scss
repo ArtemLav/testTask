@@ -20,7 +20,7 @@
     background-color: $back-color1;
     color: $button-color;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: $back-color1;
       color: $button-color-hovered;
     }

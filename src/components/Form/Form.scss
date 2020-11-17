@@ -1,4 +1,7 @@
 .form {
+  position: relative;
+  margin: 0 auto;
+  max-width: 467px;
 
   &__label {
     font-weight: 600;
@@ -12,9 +15,22 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
+    margin-bottom: 15px;
+  }
+
+  &__input {
+    &_danger {
+      border: 1px solid red;
+      box-shadow: 1px 1px 3px red;
+    }
   }
 
   &__image-label {
     margin-bottom: 20px;
+  }
+
+  .button {
+    display: block;
+    margin: 40px auto 0;
   }
 }
